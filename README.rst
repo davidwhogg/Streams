@@ -12,5 +12,6 @@ Authors
 Contributors
 ------------
 
-- **Aukosh Jagannath** (NYU)
 - **Daniel Foreman-Mackey** (NYU)
+- **Aukosh Jagannath** (NYU)
+- **Adrian Price-Whelan** (NYU)
