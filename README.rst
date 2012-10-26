@@ -14,4 +14,4 @@ Contributors
 
 - **Daniel Foreman-Mackey** (NYU)
 - **Aukosh Jagannath** (NYU)
-- **Adrian Price-Whelan** (NYU)
+- **Adrian Price-Whelan** (Columbia)
