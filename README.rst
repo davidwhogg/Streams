@@ -1,5 +1,5 @@
-Huey P. Newton
-==============
+Streams
+=======
 
 Righteous probabilistic modeling of stellar data sets in the context
 of n-body simulations.
