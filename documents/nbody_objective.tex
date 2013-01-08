@@ -37,25 +37,26 @@ XXX and the Stream is YYY.
 
 \section{Introduction}
 
-...Example problems where the theory and the data are both point sets in
-an observable space.
+...Example problems where the theory and the data are both point sets
+in an observable space...going to focus on tidal stream fitting, just
+for specificity...
 
-...Law papers.  Binney and Eyre papers.
+...Law papers.  Binney and Eyre papers...
 
 ...Paper that is very close but fails to marginalize
-(\citealt{varghese}).
+(\citealt{varghese})...
 
 ...Paper that is correct but works by instantiating an artificial and
-unnecessary binning underlying the point sets (\citealt{saha}).
+unnecessary binning underlying the point sets (\citealt{saha})...
 
 ...General statement of the problem.  Include backgrounds/foregrounds
-in the data statement.
+in the data statement...
 
-...Missing data.  Data from heterogeneous sources.
+...Missing data.  Data from heterogeneous sources...
 
 ...Selection functions.  Short answer is apply same fn to model as
 happened to data.  If you don't know it, things get hard; will return
-to this in the discussion section.
+to this in the discussion section...
 
 \section{Likelihood generalities}
 
@@ -139,7 +140,24 @@ example, \citealt{adaptiveKDE1}, \citealt{adaptiveKDE2}).  From here
 on for specificity we will treat all the $\Sigma^2_k$ to be identical
 and drop the $k$ subscript.
 
-HOGG... Now introduce a background model...
+In real situations of data analysis, it is often the case that some of
+the data points are drawn not from the structures or distributions of
+interest, but rather from some background or foreground population
+that is not of much scientific interest.  Often in data analysis
+attempts are made to hard-identify these background points and clip
+them out, but in many cases---and when it comes to tidal
+streams---this is not possible with good fidelity.  The only
+probabilistically righteous approach is to build a probabilistic model
+of the uninteresting background and fit it simultaneously with the
+structures of interest.  In this approach, the data are treated as
+being drawn from a \emph{mixture model}, a superposition of target
+(interesting) and background (uninteresting) distributions.  Mixture
+models are a good idea even when background membership \emph{can} be
+done fairly well, in part because it includes these decisions
+probabilistically in the model fitting and in part because results can
+be obtained effectively \emph{marginalizing out} all such decisions.
+
+The mixture model math looks like this:
 \begin{eqnarray}
 P(\setof{X_n}_{n=1}^N\given\theta,I) &=& \prod_{n=1}^N p(X_n\given\theta,I)
 \\
