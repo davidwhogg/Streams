@@ -5,6 +5,7 @@
 \documentclass[12pt,pdftex,preprint]{aastex}
 \usepackage{amssymb,amsmath,mathrsfs}
 
+\newcommand{\documentname}{\textsl{Article}}
 \newcommand{\setof}[1]{\left\{{#1}\right\}}
 \newcommand{\given}{\,|\,}
 \newcommand{\bg}{\mathrm{bg}}
@@ -37,9 +38,42 @@ XXX and the Stream is YYY.
 
 \section{Introduction}
 
-...Example problems where the theory and the data are both point sets
-in an observable space...going to focus on tidal stream fitting, just
-for specificity...
+In many domains in astrophysics, the theory is computed through n-body
+or particle or pseudo-particle simulations.  This includes large-scale
+cosmology, galaxy formation, molecular cloud and star formation,
+debris disks, and many other systems.  Even when the theoretical
+computations are not n-body, it is often easiest to transmit and
+manipulate their outputs using point samplings of the complex density
+fields they produce.  It is also the case that in many domains of
+interest, the data are measurements of point particles, like stars in
+our Galaxy and galaxies in the large-scale structure of our Universe.
+Again, even when the observations aren't point-like, it can be useful
+to represent measured density fields with a sampling.  Thus arises
+frequently situations in empirical astrophysics in which distributions
+of data points need to be compared to distributions of theory points
+for the purposes of model fitting, parameter estimation, model
+comparison, experimental design, and prediction.  The best methods for
+these tasks---the methods that properly transmit information and
+uncertainty from the data to the inferences and outputs---involve
+probabilistic modeling, in which there is a likelihood function (a
+probability for the data given the parameters) and prior probabilities
+(quantitative plausibilities) for (at least) the nuisance parameters.
+In this \documentname, we are going to propose a general likelihood
+function for problems of this type.
+
+For specificity, we will focus on tidal streams of stars observed in
+the Milky Way, and within that, the cold Palomar 5 stream (cite).
+This stream is a very coherent, informative structure in the Milky
+Way; we would like to be able to use it to measure the dynamical
+properties of the Galaxy, but of course it's detailed morphology in
+position--velocity space (phase space) depends on a combination of the
+initial conditions and internal structure of the disrupting globular
+cluster that generates the stream and also Milky Way parameters.  Our
+goal of obtaining precise Milky Way parameters in the face of
+globular-cluster nuisance parameters motivated our search for proper
+probabilistic methods.  In this \documentname\ we will demonstrate the
+use of our proposed likelihood function with this system, and learn
+something (we hope) about the Milky Way and Palomar 5 along the way.
 
 ...Law papers.  Binney and Eyre papers...
 
@@ -166,9 +200,15 @@ p(X_n\given\theta,I) &=& P_\bg\,p(X_n\given \bg,\theta) + \sum_{k=1}^K P_k\,p(X_
 1 &=& P_\bg + \sum_{k=1}^K P_k
 \\
 \theta &\equiv& \setof{\theta_\dyn, \theta_\ic, \Sigma^2, \setof{P_k}_{k=1}^K, \theta_\bg, P_\bg}
-\quad .
+\quad ,
 \end{eqnarray}
-Again, if all the model points are equally weighted,
+where $K$-point mixture of theory kernels is mixed with the background
+distribution, the background distribution has parameters
+$\setof{\theta_\bg, P_\bg}$, and the background probability $P_\bg$
+becomes an additional prior probability.  In this case, however, the
+prior $P_\bg$ is going to be a fit model parameter, so rather than
+thinking of it as a prior, it is better to think of it as a
+hyperparameter.  Again, if all the model points are equally weighted,
 \begin{eqnarray}
 P_k &=& \frac{[1 - P_\bg]}{K}
 \quad .
