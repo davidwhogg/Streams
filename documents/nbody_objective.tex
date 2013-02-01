@@ -92,11 +92,48 @@ unnecessary binning underlying the point sets (\citealt{saha})...
 ...General statement of the problem.  Include backgrounds/foregrounds
 in the data statement...
 
-...Missing data.  Data from heterogeneous sources...
+A key property of any probabilistically justified method is that it
+can deal with arbitrarily \emph{heterogeneous data}:
+There are always particular data points for which some dimensions
+(radial velocity, for example) has not been measured, and in a typical
+astronomical experiment, no two objects have the same noise or error
+or uncertainty properties.
+Missing data and heterogenous noise properties are one and the same
+from our point of view; ``missing data'' are just directions in the
+data space where the noise variance is arbitrarily large (or the
+inverse variance vanishes).
+A properly specified likelihood function is a pdf for the data given
+the model parameters; it is a representation of the noise model.
+As such, it can (or must) account for the individual heterogenous
+noise variances for every dimension of every data point.
 
-...Selection functions.  Short answer is apply same fn to model as
-happened to data.  If you don't know it, things get hard; will return
-to this in the discussion section...
+Another key property of any proper method is that it can deal with
+realistic \emph{selection functions}.
+Data are only measured within certain bondaries in the data space.
+The model may generate predictions or model points or n-body
+particles outside the selection boundaries.
+If you know precisely this selection function---even if it does
+not have sharp boundaries but rather regions in which the
+probability of including a data point in the sample declines from
+unity to zero gradually---then in a properly specified probabilistic
+model you can apply the selection function identically to the model
+points as it has been applied (by the experimenter or the hardware)
+to the data points.
+
+There are, of course, many observational projects in which the
+selection function is not precisely known, or cannot be described
+as a function applied independently to each data point.
+When objects have been selected for observation using external
+information that was subsequently lost or over-written, or when
+objects have been selected in groups based on group properties
+(for example if the top hundred stars are chosen in each square
+degree), then although it is not \emph{impossible} to build an
+accurate likelihood function, it does become much more difficult:
+Either the properties of the selection function must be promoted
+to the status of fittable model parameters, or else the full-data
+likelihood cannot be represented as a product of single-point
+likelihoods, or both.  We will return to some of these issues in
+the discussion.
 
 \section{Likelihood generalities}
 
