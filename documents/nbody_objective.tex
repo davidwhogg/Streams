@@ -1,12 +1,11 @@
 % This file is part of the Streams project.
-% Copyright 2012 David W. Hogg (NYU).
+% Copyright 2012, 2013 David W. Hogg (NYU).
 % All rights reserved.
 
 % to-do
 % -----
 % - make sure it makes clear from the introduction onwards, that the data space can include chemical abundances!!
 % - write introduction
-% - get Kuepper on board
 
 \documentclass[12pt,pdftex,preprint]{aastex}
 \usepackage{amssymb,amsmath,mathrsfs}
@@ -23,7 +22,7 @@
 
 \title{A likelihood function for n-body models and point data:\\
        The Palomar 5 Stream}
-\author{some combination of David W. Hogg, Andreas Kuepper (we hope), APW, AJ, DFM, others}
+\author{some combination of David W. Hogg, Andreas Kuepper, APW, AJ, DFM, others}
 
 \begin{abstract}
 In a wide range of astrophysical contexts, the dominant theoretical
@@ -91,6 +90,19 @@ unnecessary binning underlying the point sets (\citealt{saha})...
 
 ...General statement of the problem.  Include backgrounds/foregrounds
 in the data statement...
+
+The general statement of the problem is as follows: You have measured
+$N$ points $X_n$ in a high-dimensional observation space $X$.  Each
+measured data point has its own noise variance tensor $\sigma^2_n$.
+You have a theoretical model with (a possibly very high dimensional)
+parameter blob $\theta$; this model generates $K$ points
+$x_k(\theta)$.  In addition, you expect that some (unknown) fraction
+of your data points are drawn not from the structure of interest but
+instead from some uninteresting ``background'' structure.  The
+question is, can we write down a justifiable likelihood---probability
+for the $X_n$---as a function of the model parameters $\theta$?  In
+what follows we will show that we can, and that it is practicable and
+useful.
 
 A key property of any probabilistically justified method is that it
 can deal with arbitrarily \emph{heterogeneous data}:
