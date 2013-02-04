@@ -88,9 +88,6 @@ something (we hope) about the Milky Way and Palomar 5 along the way.
 ...Paper that is correct but works by instantiating an artificial and
 unnecessary binning underlying the point sets (\citealt{saha})...
 
-...General statement of the problem.  Include backgrounds/foregrounds
-in the data statement...
-
 The general statement of the problem is as follows: You have measured
 $N$ points $X_n$ in a high-dimensional observation space $X$.  Each
 measured data point has its own noise variance tensor $\sigma^2_n$.
@@ -147,18 +144,43 @@ likelihood cannot be represented as a product of single-point
 likelihoods, or both.  We will return to some of these issues in
 the discussion.
 
+In what follows, we will assume that the data points (vectors) $X_n$
+come with known uncertainty variances (tensors, possibly diagonal)
+$\sigma^2_n$.  In some cases of interest in astronomy (and many cases
+\emph{outside} of astronomy), the uncertainty variances are not known.
+There is nothing in principle challenging with making these
+uncertainty tensors (or their eigenvectors) model parameters.  We
+won't consider the general case of this, although we will include in
+our model a smoothing tensor $\Sigma$ that accounts for the smoothness
+of the model but can also hide or account for under-estimation of
+observational uncertainties.  In practice, if the data are expected to
+be heteroskedastic, and you don't know \emph{any} of the uncertainty
+variances $\sigma^2_n$, inference can get challenging; usually strong
+priors on the $\sigma^2_n$ are required for good performance.  In a
+separate project, we are looking at this question, with the priors
+themselves learned from the data (Richards et al, forthcoming).
+
+Finally but importantly, the space $X$ of observables can be
+\emph{any} space of observables, provided that the observations come
+associated with approximately Gaussian uncertainties with (at least
+approximately) known uncertainty variances.  In our example problem,
+we will consider the $X$ space to be kinematic phase space (position
+and velocity) but it could just as easily include some chemical
+abundance space, or stellar parameter space (temperature, log $g$,
+rotation, and so on).  This makes the method here extremely general;
+our own goals are to use it for modeling the joint chemical and
+dynamical state of the Milky Way, but it has an enormous range of uses
+in cosmology and Galactic astrophysics.
+
 \section{Likelihood generalities}
 
-You have measured in a survey of some kind $N$ data points $X_n$ in a
-$d$-dimensional observable space $X$.  The data points could be stars
-and the space could be 6-dimensional phase space.  It could be
-galaxies in 3-dimensional redshift space.  It could be quasars in just
-2-dimensional celestial coordinates.  Or it could be stars in a much
-higher dimensional space of phase space plus chemical indicators.
-
-...Notes here about why we should work in the observed space and not
-phase-space.  Cite issues with parallax and distance infecting
-everything...
+You have measured (in an observation or experiment or survey of some
+kind) $N$ data points $X_n$ in a $d$-dimensional observable space $X$.
+In our example (below), the data points will be stars and the space
+will be the kinematic observables of celestial position, distance,
+proper motion, and radial velocity.  As we have noted (above), the
+space could be any space, including any observable measured with
+quasi-normal uncertainty.
 
 Along with each measurement comes a positive-definite $d\times d$
 variance tensor $\sigma^2_n$, or a non-negative-definite inverse
@@ -172,11 +194,26 @@ have measured angular positions and with stars that have measured
 proper motions; each of these different kinds of star has a different
 rank to the $\sigma^{-2}_n$ tensor.
 
-At the same time, you have a theory or model that can be computed with
-a ``n-body'' simulation that generates $K$ points $x_k$ in that same
-space.  The theory has a large vector or blob of parameters $\theta$.
-If the theory is interesting and predictive, the positions $x_k$
-depend non-trivially on the parameters $\theta$.
+One restriction we ought to apply to the space $X$ is that it ought to
+be the space \emph{in which the observations are made} or a trivial
+transformation (rotation, shift, or affine) thereof.  The reason is
+that if the observational uncertainties are Gaussian or close to
+Gaussian in the observed space, they will \emph{not} be close to
+Gaussian in a radical transformation of that space.  For example, in
+our example (below), the observables of log-distance (distance
+modulus) and proper motion are usually converted straightforwardly to
+velocity.  Because this transformation involves exponentiation and
+multiplication of observables, it leads to a multi-dimensional and
+non-Gaussian uncertainty even if the original observables have
+independent Gaussian uncertainties.  The case is even worse when it is
+parallaxes that are observed, because there is a division of
+observables, with the denominator close to zero.
+
+The theory or model is computed with or represented in an ``n-body''
+representation that includes $K$ points $x_k$ in that same $X$ space
+as the data points $X_n$.  The theory has a large vector or blob of
+parameters $\theta$.  If the theory is interesting and predictive, the
+positions $x_k$ depend non-trivially on the parameters $\theta$.
 
 The fundamental idea is that if these model points are representative,
 the data can be thought of as being \emph{generated by} the model
